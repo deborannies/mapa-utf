@@ -25,3 +25,49 @@ Foram projetadas 4 telas principais:
 4. **Detalhes do Local:** Informações específicas do bloco selecionado com fotos e dicas de acesso.
 
 > **[Link do Protótipo no Figma](https://www.figma.com/design/vkcgIrWoIFctaimzrglvOt/MapaUTF?node-id=0-1&t=I4WRBy5uvYdLHDbT-1)**
+
+## Modelagem do banco
+Como o aplicativo terá foco em desempenho rápido, funcionamento offline no campus (onde a internet pode oscilar) e armazenamento de rotina pessoal, o banco de dados será implementado de forma Local com SQLite.
+O modelo relacional proposto é simples e eficient, focado em cruzar a aula do aluno com as coordenadas do mapa. Abaixo está a descrição das entidades a serem criadas:
+
+**Diagrama Entidade-Relacionamento:**
+
+* **Tabela: `locations` (Locais do Campus pré-cadastrados)**
+  * `id` (PK, INTEGER)
+  * `name` (TEXT) - *Ex: Bloco B - Informática*
+  * `latitude` (REAL)
+  * `longitude` (REAL)
+  * `access_tip` (TEXT) - *Ex: O bloco B é o edifício mais próximo...*
+  * `image_url` (TEXT) - *Caminho para a foto do bloco*
+
+* **Tabela: `classes` (Aulas cadastradas pelo aluno)**
+  * `id` (PK, INTEGER)
+  * `subject` (TEXT) - *Ex: Pensamento Computacional*
+  * `day_of_week` (TEXT) - *Ex: Ter*
+  * `start_time` (TEXT) - *Ex: 18:40*
+  * `end_time` (TEXT) - *Ex: 20:10*
+  * `location_id` (FK, INTEGER) - *Referência à tabela locations*
+
+<img width="712" height="355" alt="mapa-utf-modelagem" src="https://github.com/user-attachments/assets/c8bddc96-36a4-4596-a06b-47a51fd6c9f7" />
+
+## Planejamento de sprints
+
+* **Sprint 1 (2 Semanas): Setup e Navegação Base**
+  * Criação do repositório e inicialização do Expo.
+  * Implementação da estrutura de roteamento com Expo Router (Tabs e Stack para os formulários).
+* **Sprint 2 (2 Semanas): Interface e Estilização**
+  * Construção das 4 telas planejadas no Figma usando NativeWind.
+  * Criação de componentes reutilizáveis (Cards de aula, Botões, Cabeçalhos).
+  * *Entrega do Checkpoint 2*
+* **Sprint 3 (3 Semanas): Lógica e Banco de Dados Local**
+  * Configuração do SQLite no projeto.
+  * Criação das tabelas e injeção dos dados fixos (locations).
+  * Lógica de inserção, listagem e validação dos dados do formulário de Nova Aula.
+* **Sprint 4 (2 Semanas): Integração do Mapa**
+  * Configuração do `react-native-maps`.
+  * Renderização dos pinos sobre a foto de satélite da UTFPR.
+  * Ação de navegação: clicar em "Ver no Mapa" na tela de Grade centraliza o mapa no respectivo bloco.
+* **Sprint 5 (2 Semanas): Entrega**
+  * Testes de usabilidade e tratamento de erros (ex: tentar salvar aula sem nome).
+  * Build do aplicativo.
+  * *Entrega do Checkpoint Final*
