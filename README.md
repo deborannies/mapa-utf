@@ -4,7 +4,7 @@
 O **MapaUTF** é um projeto de aplicativo em desenvolvimento para a disciplina de Desenvolvimento de Projetos para Dispositivos Móveis (DPDM). Seu objetivo principal é conectar a grade de aulas do estudante com o mapa da universidade, ajudando o aluno a saber exatamente onde e quando suas aulas vão acontecer. A proposta é que o aplicativo permita que o aluno cadastre sua grade de aulas e visualize no mapa o bloco exato para onde deve se dirigir, além de fornecer dicas de acesso e informações úteis (como cardápio do RU e acesso à Biblioteca).
 
 **Checklist de Funcionalidades (Escopo do Semestre):**
-- [ ] Configuração do ambiente (Expo + Expo Router).
+- [x] Configuração do ambiente (Expo + Expo Router).
 - [ ] Criação da navegação por Tabs (Minha Grade e Mapa do Campus).
 - [ ] Estilização das telas usando NativeWind.
 - [ ] Formulário de cadastro de aulas com validação de dados.
