@@ -1,9 +1,9 @@
 import { Text, View } from 'react-native';
 
-export default function MinhaGrade() {
+export default function Mapa() {
   return (
     <View>
-      <Text>Minha Grade</Text>
+      <Text>Mapa do Campus</Text>
     </View>
   );
 };
