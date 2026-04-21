@@ -5,7 +5,7 @@ O **MapaUTF** é um projeto de aplicativo em desenvolvimento para a disciplina d
 
 **Checklist de Funcionalidades (Escopo do Semestre):**
 - [x] Configuração do ambiente (Expo + Expo Router).
-- [ ] Criação da navegação por Tabs (Minha Grade e Mapa do Campus).
+- [x] Criação da navegação por Tabs (Minha Grade e Mapa do Campus).
 - [ ] Estilização das telas usando NativeWind.
 - [ ] Formulário de cadastro de aulas com validação de dados.
 - [ ] Persistência de dados local utilizando SQLite.
