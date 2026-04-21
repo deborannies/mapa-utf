@@ -10,7 +10,7 @@ O **MapaUTF** é um projeto de aplicativo em desenvolvimento para a disciplina d
 - [ ] Formulário de cadastro de aulas com validação de dados.
 - [ ] Persistência de dados local utilizando SQLite.
 - [ ] Integração de Mapa Interativo (`react-native-maps`) com visão de satélite do campus.
-- [ ] Inserção de marcadores (Pins) personalizados para os blocos, RU e Biblioteca.
+- [ ] Renderização de marcadores (Pins) fixos no mapa para os blocos, RU e Biblioteca (dados pré-cadastrados na aplicação).
 - [ ] Criação de um *Bottom Sheet* para exibição de detalhes, fotos e dicas de acesso dos blocos.
 - [ ] *(Trabalho Futuro)* Notificações avisando quando a próxima aula estiver prestes a começar.
 - [ ] *(Trabalho Futuro)* Traçar a rota em tempo real do ponto atual do usuário até o bloco da aula.
@@ -35,6 +35,7 @@ O modelo relacional proposto é simples e eficient, focado em cruzar a aula do a
 * **Tabela: `locations` (Locais do Campus pré-cadastrados)**
   * `id` (PK, INTEGER)
   * `name` (TEXT) - *Ex: Bloco B - Informática*
+  * `subtitle` (TEXT) - *Ex: Laboratórios e Sala dos Professores*
   * `latitude` (REAL)
   * `longitude` (REAL)
   * `access_tip` (TEXT) - *Ex: O bloco B é o edifício mais próximo...*
@@ -48,7 +49,16 @@ O modelo relacional proposto é simples e eficient, focado em cruzar a aula do a
   * `end_time` (TEXT) - *Ex: 20:10*
   * `location_id` (FK, INTEGER) - *Referência à tabela locations*
 
-<img width="712" height="355" alt="mapa-utf-modelagem" src="https://github.com/user-attachments/assets/c8bddc96-36a4-4596-a06b-47a51fd6c9f7" />
+* **Tabela: `badges` (Etiquetas de comodidades)**
+  * `id` (PK, INTEGER)
+  * `name` (TEXT) - *Ex: Wi-Fi Livre, Acessível*
+  * `icon` (TEXT) - *Nome do ícone a ser renderizado*
+
+* **Tabela: `location_badges` (Relação N-N entre locais e badges)**
+  * `location_id` (FK, INTEGER)
+  * `badge_id` (FK, INTEGER)
+
+<img width="712" height="543" alt="mapa-utf-modelagem" src="https://github.com/user-attachments/assets/857b0742-363c-41ff-b9b8-649477d51a10" />
 
 ## Planejamento de sprints
 
