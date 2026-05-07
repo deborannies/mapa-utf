@@ -1,5 +1,6 @@
 import { View, StyleSheet } from 'react-native';
 import CardAula from '../../components/CardAula';
+import BotaoFlutuante from '../../components/BotaoFlutuante';
 
 export default function TelaTeste() {
   return (
@@ -17,7 +18,12 @@ export default function TelaTeste() {
         local="Bloco C - Lab C1" 
         ativo={false} 
       />
+
+      <BotaoFlutuante href="/nova-aula" />
+      
     </View>
+
+    
   );
 }
 
