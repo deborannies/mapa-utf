@@ -2,7 +2,7 @@ import { View, StyleSheet } from 'react-native';
 import CardAula from '../../components/CardAula';
 import BotaoFlutuante from '../../components/BotaoFlutuante';
 
-export default function TelaTeste() {
+export default function MinhaGrade() {
   return (
     <View style={styles.container}>
       <CardAula 
@@ -20,7 +20,7 @@ export default function TelaTeste() {
       />
 
       <BotaoFlutuante href="/nova-aula" />
-      
+
     </View>
 
     
