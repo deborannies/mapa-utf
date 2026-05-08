@@ -1,33 +1,32 @@
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import CardAula from '../../components/CardAula';
 import BotaoFlutuante from '../../components/BotaoFlutuante';
+
+import { AULAS_MOCK } from '../../mocks/aulas'; 
 
 export default function MinhaGrade() {
   return (
     <View style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Text style={styles.labelSaudacao}>Bem-Vindo</Text>
+        <Text style={styles.tituloPrincipal}>Olá, Calouro</Text>
+        <Text style={styles.textoData}>Segunda-Feira, 15 de Abril</Text>
 
-      <Text style={styles.labelSaudacao}>Bem-Vindo</Text>
-      <Text style={styles.tituloPrincipal}>Olá, Calouro</Text>
-      <Text style={styles.textoData}>Segunda-Feira, 15 de Abril</Text>
+        <Text style={styles.tituloSecao}>Aulas de Hoje</Text>
 
-      <Text style={styles.tituloSecao}>Aulas de Hoje</Text>
-
-      <CardAula 
-        titulo="Pensamento Computacional" 
-        horario="18:40 - 20:10" 
-        local="Bloco B - Lab B6" 
-        ativo={true}/>
-
-      <CardAula 
-        titulo="Introdução à Computação" 
-        horario="20:30 - 22:00" 
-        local="Bloco C - Lab C1" 
-        ativo={false}/>
+        {AULAS_MOCK.map((aula) => (
+          <CardAula 
+            key={aula.id}
+            titulo={aula.titulo}
+            horario={aula.horario} 
+            local={aula.local} 
+            ativo={aula.ativo}
+          />
+        ))}
+      </ScrollView>
 
       <BotaoFlutuante href="/nova-aula" />
     </View>
-
-    
   );
 }
 
