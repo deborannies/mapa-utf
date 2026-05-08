@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, ScrollView, StyleSheet } from "react-native";
+import { View, ScrollView, StyleSheet, Text } from "react-native";
 import CampoInput from "../components/CampoInput";
 
 export default function NovaAula() {
@@ -8,6 +8,8 @@ export default function NovaAula() {
 
   return (
     <ScrollView style={styles.container}>
+      <Text>Configuração</Text>
+      <Text>Organize seus estudos no campus.</Text>
       <CampoInput 
         label="Nome da Matéria"
         placeholder="Ex: Pensamento Computacional"
