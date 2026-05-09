@@ -6,11 +6,11 @@ O **MapaUTF** é um projeto de aplicativo em desenvolvimento para a disciplina d
 **Checklist de Funcionalidades (Escopo do Semestre):**
 - [x] Configuração do ambiente (Expo + Expo Router).
 - [x] Criação da navegação por Tabs (Minha Grade e Mapa do Campus).
-- [ ] Estilização das telas usando NativeWind.
+- [x] Estilização das telas usando NativeWind.
 - [ ] Formulário de cadastro de aulas com validação de dados.
 - [ ] Persistência de dados local utilizando SQLite.
 - [ ] Integração de Mapa Interativo (`react-native-maps`) com visão de satélite do campus.
-- [ ] Renderização de marcadores (Pins) fixos no mapa para os blocos, RU e Biblioteca (dados pré-cadastrados na aplicação).
+- [x] Renderização de marcadores (Pins) fixos no mapa para os blocos, RU e Biblioteca (dados pré-cadastrados na aplicação).
 - [ ] Criação de um *Bottom Sheet* para exibição de detalhes, fotos e dicas de acesso dos blocos.
 - [ ] *(Trabalho Futuro)* Notificações avisando quando a próxima aula estiver prestes a começar.
 - [ ] *(Trabalho Futuro)* Traçar a rota em tempo real do ponto atual do usuário até o bloco da aula.
@@ -25,6 +25,23 @@ Foram projetadas 4 telas principais:
 4. **Detalhes do Local:** Informações específicas do bloco selecionado com fotos e dicas de acesso.
 
 > **[Link do Protótipo no Figma](https://www.figma.com/design/vkcgIrWoIFctaimzrglvOt/MapaUTF?node-id=0-1&t=I4WRBy5uvYdLHDbT-1)**
+
+## Atualizações desde o último checkpoint
+
+Nesta etapa, o projeto evoluiu de um setup inicial para uma interface funcional e fiel ao protótipo. Abaixo os detalhes técnicos aplicados:
+
+### Recursos dos Módulos Anteriores Aplicados
+* **Expo Router:** Utilizei o sistema de roteamento baseado em arquivos para criar a estrutura de abas `(tabs)` e a navegação em pilha `stack` para o formulário de "Nova Aula".
+* **StyleSheet e Flexbox:** Usei o `StyleSheet.create` para garantir performance nativa e apliquei conceitos avançados de Flexbox (como `flexDirection: row`, `flexWrap` e `gap`) para organizar os cards e seletores de dias.
+* **Hooks (useState):** Apliquei o hook `useState` para gerenciar o estado dos inputs do formulário e a seleção dinâmica do `SeletorDia`.
+* **Componentes Expo:** Utilizei componentes fundamentais como `ScrollView` para garantir a rolagem em telas de formulário e `TouchableOpacity` para feedback visual em botões.
+
+### Boas Práticas para Componentes Reutilizáveis
+Apliquei os seguintes conceitos da aula de boas práticas:
+* **Desestruturação de Props:** Aplicada nos componentes `CardAula`, `CampoInput` e `SeletorDia`, tornando o código mais legível e profissional.
+* **Componentização de UI:** Identifiquei elementos repetitivos no Figma e os transformei em componentes reutilizáveis na pasta `/components`.
+* **Separação de Preocupações:** Os componentes personalizados focam apenas na exibição (UI), enquanto a lógica de estado e navegação permanece nas telas principais.
+* **Tipagem com TypeScript:** Defini interfaces para todas as propriedades dos componentes, evitando erros de dados e facilitando a manutenção do projeto.
 
 ## Modelagem do banco
 Como o aplicativo terá foco em desempenho rápido, funcionamento offline no campus (onde a internet pode oscilar) e armazenamento de rotina pessoal, o banco de dados será implementado de forma Local com SQLite.
