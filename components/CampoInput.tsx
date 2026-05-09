@@ -16,7 +16,7 @@ export default function CampoInput({ label, placeholder, valor, onChange }: Camp
         placeholder={placeholder} 
         value={valor}
         onChangeText={onChange}
-        placeholderTextColor="#9ca3af" 
+        placeholderTextColor="#C1C7D2" 
       />
     </View>
   );
@@ -25,23 +25,25 @@ export default function CampoInput({ label, placeholder, valor, onChange }: Camp
 const styles = StyleSheet.create({
   grupoInput: {
     width: "100%",
-    marginBottom: 20,
+    marginBottom: 16,
+    backgroundColor: "#F2F2F2", 
+    padding: 16,
+    borderRadius: 16,
   },
   label: {
     fontSize: 14,
     fontWeight: "bold",
-    color: "#374151", 
+    color: "#4B5563", 
     marginBottom: 8,
-    marginLeft: 4,   
   },
   input: {
-    backgroundColor: "#ffffff",
-    borderWidth: 1,
-    borderColor: "#e5e7eb", 
-    borderRadius: 8, 
+    backgroundColor: "#ffffff", 
+    borderRadius: 12, 
     paddingHorizontal: 16, 
-    paddingVertical: 12,  
+    height: 48,
     fontSize: 16,
-    color: "#1f2937", 
+    color: "#1f2937",
+    borderWidth: 1,
+    borderColor: "#E5E7EB",
   },
 });
