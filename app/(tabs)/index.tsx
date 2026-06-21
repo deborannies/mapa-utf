@@ -1,67 +1,56 @@
+import { useEffect, useState } from 'react';
 import { View, StyleSheet, Text, ScrollView } from 'react-native';
+import { useIsFocused } from '@react-navigation/native';
 import CardAula from '../../components/CardAula';
 import BotaoFlutuante from '../../components/BotaoFlutuante';
-
-import { AULAS_MOCK } from '../../mocks/aulas'; 
+import { initDB, listarAulas, AulaDB } from '../../services/db';
 
 export default function MinhaGrade() {
+  const isFocused = useIsFocused();
+  const [aulas, setAulas] = useState<AulaDB[]>([]);
+
+  useEffect(() => {
+    initDB();
+  }, []);
+
+  useEffect(() => {
+    if (isFocused) {
+      setAulas(listarAulas());
+    }
+  }, [isFocused]);
+
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.labelSaudacao}>Bem-Vindo</Text>
-        <Text style={styles.tituloPrincipal}>Olá, Calouro</Text>
+        <Text style={styles.tituloPrincipal}>Olá, Calouro!</Text>
         <Text style={styles.textoData}>Segunda-Feira, 15 de Abril</Text>
 
-        <Text style={styles.tituloSecao}>Aulas de Hoje</Text>
+        <Text style={styles.tituloSecao}>Aulas de hoje</Text>
 
-        {AULAS_MOCK.map((aula) => (
-          <CardAula 
-            key={aula.id}
-            titulo={aula.titulo}
-            horario={aula.horario} 
-            local={aula.local} 
-            ativo={aula.ativo}
-          />
-        ))}
+        {aulas.length === 0 ? (
+          <Text style={{textAlign: 'center', marginTop: 20, color: '#9CA3AF'}}>Nenhuma aula salva.</Text>
+        ) : (
+          aulas.map((aula) => (
+            <CardAula 
+              key={aula.id?.toString()} 
+              titulo={aula.subject} 
+              horario={`${aula.start_time} - ${aula.end_time}`} 
+              local={aula.local} 
+              ativo={true} 
+            />
+          ))
+        )}
       </ScrollView>
-
       <BotaoFlutuante href="/nova-aula" />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 24,
-    backgroundColor: '#f8f9fb',
-  },
-
-  labelSaudacao: {
-    color: '#8B6B22',
-    textTransform: 'uppercase',
-    fontSize: 10,
-    fontWeight: 'bold',
-    marginBottom: 4,
-  },
-
-  tituloPrincipal: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#111827',
-    marginBottom: 4,
-  },
-
-  textoData: {
-    fontSize: 14,
-    color: '#6b7280',
-    marginBottom: 20,
-  },
-
-  tituloSecao: {
-    fontSize: 18,
-    color: '#111827',
-    fontWeight: 'bold',
-    marginBottom: 14,
-  }
+  container: { flex: 1, padding: 24, backgroundColor: '#f8f9fb' },
+  labelSaudacao: { color: '#8B6B22', textTransform: 'uppercase', fontSize: 10, fontWeight: 'bold', marginBottom: 4 },
+  tituloPrincipal: { fontSize: 28, fontWeight: 'bold', color: '#111827', marginBottom: 4 },
+  textoData: { fontSize: 14, color: '#6b7280', marginBottom: 20 },
+  tituloSecao: { fontSize: 18, color: '#111827', fontWeight: 'bold', marginBottom: 14 }
 });
