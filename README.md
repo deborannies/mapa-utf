@@ -6,14 +6,14 @@ O **MapaUTF** é um projeto de aplicativo em desenvolvimento para a disciplina d
 **Checklist de Funcionalidades (Escopo do Semestre):**
 - [x] Configuração do ambiente (Expo + Expo Router).
 - [x] Criação da navegação por Tabs (Minha Grade e Mapa do Campus).
-- [x] Estilização das telas usando NativeWind.
-- [ ] Formulário de cadastro de aulas com validação de dados.
-- [ ] Persistência de dados local utilizando SQLite.
-- [ ] Integração de Mapa Interativo (`react-native-maps`) com visão de satélite do campus.
-- [x] Renderização de marcadores (Pins) fixos no mapa para os blocos, RU e Biblioteca (dados pré-cadastrados na aplicação).
-- [ ] Criação de um *Bottom Sheet* para exibição de detalhes, fotos e dicas de acesso dos blocos.
-- [ ] *(Trabalho Futuro)* Notificações avisando quando a próxima aula estiver prestes a começar.
-- [ ] *(Trabalho Futuro)* Traçar a rota em tempo real do ponto atual do usuário até o bloco da aula.
+- [x] Estilização das telas (utilizando StyleSheet e Flexbox).
+- [x] Formulário de cadastro de aulas com validação de dados.
+- [x] Persistência de dados local utilizando SQLite.
+- [x] Integração de Mapa Interativo (adaptado para WebView + Leaflet) com visão de satélite do campus.
+- [x] Renderização de marcadores (Pins) fixos no mapa para os blocos e locais da universidade.
+- [ ] (Trabalho Futuro) Criação de um Bottom Sheet para exibição de detalhes, fotos e dicas de acesso dos blocos.
+- [ ] (Trabalho Futuro) Notificações avisando quando a próxima aula estiver prestes a começar.
+- [ ] (Trabalho Futuro) Traçar a rota em tempo real do ponto atual do usuário até o bloco da aula.
 
 ## Protótipos de tela
 Os protótipos foram desenvolvidos no Figma para guiar o design da aplicação. O fluxo principal foca em duas abas: a organização temporal da rotina (Minha Grade) e a visualização espacial (Mapa do Campus). 
