@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, ScrollView, StyleSheet, Text, TouchableOpacity, Alert } from "react-native";
+import { View, ScrollView, StyleSheet, Text, TouchableOpacity, Alert, TextInput } from "react-native";
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useRouter } from "expo-router";
 import CampoInput from "../components/CampoInput";
@@ -11,6 +11,9 @@ export default function NovaAula() {
   const [materia, setMateria] = useState("");
   const [dia, setDia] = useState("Ter");
   const [local, setLocal] = useState("");
+  
+  const [inicio, setInicio] = useState("18:40");
+  const [termino, setTermino] = useState("20:10");
 
   const handleSalvar = () => {
     if (materia.trim() === "") {
@@ -26,8 +29,8 @@ export default function NovaAula() {
       salvarAula({ 
         subject: materia, 
         day_of_week: dia, 
-        start_time: "18:40", 
-        end_time: "20:10", 
+        start_time: inicio,
+        end_time: termino,
         local: local 
       });
       
@@ -49,8 +52,33 @@ export default function NovaAula() {
         <SeletorDia diaSelecionado={dia} onSelecionar={setDia} />
 
         <View style={styles.row}>
-          <View style={styles.cardMetade}><Text style={styles.labelInterna}>Início</Text><View style={styles.inputFake}><Text style={styles.textMuted}>18:40</Text><FontAwesome5 name="clock" size={14} color="#9CA3AF" /></View></View>
-          <View style={styles.cardMetade}><Text style={styles.labelInterna}>Término</Text><View style={styles.inputFake}><Text style={styles.textMuted}>20:10</Text><FontAwesome5 name="clock" size={14} color="#9CA3AF" /></View></View>
+          <View style={styles.cardMetade}>
+            <Text style={styles.labelInterna}>Início</Text>
+            <View style={styles.inputFake}>
+              <TextInput 
+                style={styles.inputHorario}
+                value={inicio}
+                onChangeText={setInicio}
+                keyboardType="numbers-and-punctuation"
+                maxLength={5}
+              />
+              <FontAwesome5 name="clock" size={14} color="#9CA3AF" />
+            </View>
+          </View>
+
+          <View style={styles.cardMetade}>
+            <Text style={styles.labelInterna}>Término</Text>
+            <View style={styles.inputFake}>
+              <TextInput 
+                style={styles.inputHorario}
+                value={termino}
+                onChangeText={setTermino}
+                keyboardType="numbers-and-punctuation"
+                maxLength={5}
+              />
+              <FontAwesome5 name="clock" size={14} color="#9CA3AF" />
+            </View>
+          </View>
         </View>
 
         <CampoInput label="Escolher Local" placeholder="Ex: Bloco B" valor={local} onChange={setLocal} />
@@ -76,7 +104,7 @@ const styles = StyleSheet.create({
   cardMetade: { flex: 1, backgroundColor: "#F2F2F2", padding: 16, borderRadius: 16, marginBottom: 16 },
   labelInterna: { fontSize: 13, fontWeight: "bold", color: "#4B5563", marginBottom: 8 },
   inputFake: { backgroundColor: "#FFF", height: 44, borderRadius: 10, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', borderWidth: 1, borderColor: '#E5E7EB' },
-  textMuted: { color: '#9CA3AF' },
+  inputHorario: { flex: 1, color: '#111827', fontSize: 16 },
   footer: { padding: 24, borderTopWidth: 1, borderTopColor: '#F3F4F6' },
   botaoSalvar: { backgroundColor: '#004B87', height: 56, borderRadius: 28, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' },
   iconeBotao: { marginRight: 10 },
