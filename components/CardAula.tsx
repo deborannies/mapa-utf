@@ -6,13 +6,17 @@ interface CardAulaProps {
   horario: string;
   local: string;
   ativo?: boolean;
+  onDelete?: () => void;
 }
 
-export default function CardAula({ titulo, horario, local, ativo }: CardAulaProps) {
+export default function CardAula({ titulo, horario, local, ativo, onDelete }: CardAulaProps) {
   return (
     <View style={styles.cardContainer}>
+
       <View style={styles.infoContainer}>
-        <Text style={[styles.tituloBase, ativo ? styles.tituloAtivo : styles.tituloInativo]}>{titulo}</Text>
+        <Text style={[styles.tituloBase, ativo ? styles.tituloAtivo : styles.tituloInativo]}>
+          {titulo}
+        </Text>
         
         <View style={styles.row}>
           <FontAwesome5 name="clock" size={12} color="gray" />
@@ -25,11 +29,22 @@ export default function CardAula({ titulo, horario, local, ativo }: CardAulaProp
         </View>
       </View>
       
-      <TouchableOpacity style={[styles.botao, ativo ? styles.botaoAtivo : styles.botaoInativo]}>
-        <Text style={[styles.textoBotao, ativo ? styles.textoBotaoAtivo : styles.textoBotaoInativo]}>
-          Ver no Mapa
-        </Text>
-      </TouchableOpacity>
+
+      <View style={styles.acoesContainer}>
+        {onDelete ? (
+          <TouchableOpacity onPress={onDelete} style={styles.botaoLixeira}>
+            <FontAwesome5 name="trash" size={14} color="#6b7280" />
+          </TouchableOpacity>
+        ) : (
+          <View style={{ height: 28 }} /> 
+        )}
+        
+        <TouchableOpacity style={[styles.botao, ativo ? styles.botaoAtivo : styles.botaoInativo]}>
+          <Text style={[styles.textoBotao, ativo ? styles.textoBotaoAtivo : styles.textoBotaoInativo]}>
+            Ver no Mapa
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -42,7 +57,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
+
     borderColor: "#f3f4f6",
     borderWidth: 1,
     shadowColor: "#000",
@@ -53,6 +68,12 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     flex: 1,
+    justifyContent: "flex-start",
+    paddingRight: 12,
+  },
+  acoesContainer: {
+    justifyContent: "space-between", 
+    alignItems: "flex-end",
   },
   row: {
     flexDirection: "row",
@@ -64,11 +85,14 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginLeft: 8,
   },
+  botaoLixeira: {
+    padding: 4, 
+    marginBottom: 12,
+  },
   botao: {
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 9999,
-    marginLeft: 8,
   },
   botaoAtivo: {
     backgroundColor: "#facc15",

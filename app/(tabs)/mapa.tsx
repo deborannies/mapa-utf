@@ -1,25 +1,37 @@
-import { View, StyleSheet } from "react-native";
-import PinoMapa from "../../components/PinoMapa";
+import { StyleSheet, View } from 'react-native';
+import { WebView } from 'react-native-webview';
 
-export default function Mapa() {
+export default function MapaCampus() {
+  const htmlMapa = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+      <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+      <style>body { margin: 0; } #map { height: 100vh; width: 100vw; }</style>
+    </head>
+    <body>
+      <div id="map"></div>
+      <script>
+        var map = L.map('map').setView([-25.3512, -51.4787], 17);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        
+        L.marker([-25.3504, -51.4792]).addTo(map).bindPopup('<b>Bloco A</b>');
+      
+        L.marker([-25.3510, -51.4786]).addTo(map).bindPopup('<b>Bloco B</b>');
+        
+        L.marker([-25.3522, -51.4788]).addTo(map).bindPopup('<b>Quadra Poliesportiva</b>');
+      </script>
+    </body>
+    </html>
+  `;
+
   return (
-    <View style={styles.mapaFundo}>
-      
-      <PinoMapa titulo="Bloco A" icone="building" corBase="#8B6B22" top="15%" left="35%" />
-      
-      <PinoMapa titulo="Bloco C" icone="building" corBase="#8B6B22" top="25%" left="15%" />
-      
-      <PinoMapa titulo="Biblioteca" icone="book" corBase="#004b87" top="45%" left="50%" />
-      
-      <PinoMapa titulo="RU" icone="utensils" corBase="#004b87" top="70%" left="70%" />
-
+    <View style={styles.container}>
+      <WebView originWhitelist={['*']} source={{ html: htmlMapa }} style={styles.mapa} />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  mapaFundo: {
-    flex: 1,
-    backgroundColor: "#d1e0d5",
-  },
-});
+const styles = StyleSheet.create({ container: { flex: 1 }, mapa: { flex: 1 } });
