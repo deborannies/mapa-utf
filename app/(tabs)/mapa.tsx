@@ -14,14 +14,14 @@ export default function MapaCampus() {
     <body>
       <div id="map"></div>
       <script>
-        // Coordenadas ajustadas para a UTFPR Guarapuava (Av. Profa. Laura Pacheco Bastos)
         var map = L.map('map').setView([-25.3512, -51.4787], 17);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
         
-        // Marcadores ajustados perto da localização do campus
-        L.marker([-25.3510, -51.4789]).addTo(map).bindPopup('<b>Bloco A</b>');
-        L.marker([-25.3515, -51.4785]).addTo(map).bindPopup('<b>Bloco B (Laboratórios)</b>');
-        L.marker([-25.3505, -51.4795]).addTo(map).bindPopup('<b>Restaurante Universitário</b>');
+        L.marker([-25.3504, -51.4792]).addTo(map).bindPopup('<b>Bloco A</b>');
+      
+        L.marker([-25.3510, -51.4786]).addTo(map).bindPopup('<b>Bloco B</b>');
+        
+        L.marker([-25.3522, -51.4788]).addTo(map).bindPopup('<b>Quadra Poliesportiva</b>');
       </script>
     </body>
     </html>

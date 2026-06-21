@@ -40,3 +40,12 @@ export const salvarAula = (aula: Omit<AulaDB, 'id'>) => {
 export const listarAulas = (): AulaDB[] => {
   return db.getAllSync<AulaDB>('SELECT * FROM classes');
 };
+
+export const excluirAula = (id: number) => {
+  const statement = db.prepareSync('DELETE FROM classes WHERE id = $id');
+  try {
+    statement.executeSync({ $id: id });
+  } finally {
+    statement.finalizeSync();
+  }
+};

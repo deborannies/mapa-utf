@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, ScrollView, StyleSheet, Text, TouchableOpacity, Alert, TextInput } from "react-native";
+import { View, ScrollView, StyleSheet, Text, TouchableOpacity, Alert, TextInput, KeyboardAvoidingView, Platform } from "react-native";
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useRouter } from "expo-router";
 import CampoInput from "../components/CampoInput";
@@ -11,7 +11,6 @@ export default function NovaAula() {
   const [materia, setMateria] = useState("");
   const [dia, setDia] = useState("Ter");
   const [local, setLocal] = useState("");
-  
   const [inicio, setInicio] = useState("18:40");
   const [termino, setTermino] = useState("20:10");
 
@@ -29,8 +28,8 @@ export default function NovaAula() {
       salvarAula({ 
         subject: materia, 
         day_of_week: dia, 
-        start_time: inicio,
-        end_time: termino,
+        start_time: inicio, 
+        end_time: termino, 
         local: local 
       });
       
@@ -43,8 +42,16 @@ export default function NovaAula() {
   };
 
   return (
-    <View style={styles.wrapper}>
-      <ScrollView style={styles.container} contentContainerStyle={styles.scrollContent}>
+    <KeyboardAvoidingView 
+      style={styles.wrapper} 
+      behavior={Platform.OS === "ios" ? "padding" : "height"} 
+      keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 80} 
+    >
+      <ScrollView 
+        style={styles.container} 
+        contentContainerStyle={styles.scrollContent}
+        keyboardShouldPersistTaps="handled" 
+      >
         <Text style={styles.labelConfig}>CONFIGURAÇÃO</Text>
         <Text style={styles.tituloPrincipal}>Organize seus estudos no campus.</Text>
         
@@ -90,14 +97,14 @@ export default function NovaAula() {
           <Text style={styles.textoBotao}>Salvar Aula</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
   wrapper: { flex: 1, backgroundColor: "#FFF" },
   container: { flex: 1, padding: 24 },
-  scrollContent: { paddingBottom: 40 },
+  scrollContent: { paddingBottom: 80, flexGrow: 1 },
   labelConfig: { color: '#8B6B22', fontSize: 10, fontWeight: 'bold', marginBottom: 4, letterSpacing: 1 },
   tituloPrincipal: { fontSize: 26, fontWeight: 'bold', color: '#111827', marginBottom: 24, lineHeight: 32 },
   row: { flexDirection: 'row', gap: 12 },
@@ -105,7 +112,7 @@ const styles = StyleSheet.create({
   labelInterna: { fontSize: 13, fontWeight: "bold", color: "#4B5563", marginBottom: 8 },
   inputFake: { backgroundColor: "#FFF", height: 44, borderRadius: 10, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', borderWidth: 1, borderColor: '#E5E7EB' },
   inputHorario: { flex: 1, color: '#111827', fontSize: 16 },
-  footer: { padding: 24, borderTopWidth: 1, borderTopColor: '#F3F4F6' },
+  footer: { padding: 24, borderTopWidth: 1, borderTopColor: '#F3F4F6', backgroundColor: '#FFF' },
   botaoSalvar: { backgroundColor: '#004B87', height: 56, borderRadius: 28, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' },
   iconeBotao: { marginRight: 10 },
   textoBotao: { color: '#FFF', fontSize: 16, fontWeight: 'bold' },
